@@ -1,0 +1,22 @@
+{
+  "name": "campaign-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nevilgeorge/campaign-backend.git"
+  },
+  "author": "Nevil George",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nevilgeorge/campaign-backend/issues"
+  },
+  "homepage": "https://github.com/nevilgeorge/campaign-backend",
+  "dependencies": {
+    "express": "^4.12.2"
+  }
+}
