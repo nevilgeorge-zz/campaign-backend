@@ -9,7 +9,7 @@ app.get('/', function(req, res) {
 	res.send('You\'ve reached a Node server.');
 });
 
-app.get('feedback', function(req, res) {
+app.get('/feedback', function(req, res) {
 	res.send('feedback');
 });
 
