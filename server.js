@@ -4,7 +4,6 @@
 var express = require('express'),
 	bodyParser = require('body-parser'),
 	nodemailer = require('nodemailer'),
-	Twit = require('twit'),
 	app = express();
 
 // nodemailer transporter
@@ -14,11 +13,6 @@ var transporter = nodemailer.createTransport({
 		user: 'liven93@gmail.com',
 		pass: process.env.EMAIL_PASS
 	}
-});
-
-// twitter client instance
-var T = new Twit({
-
 });
 
 // setting up express app
@@ -50,9 +44,7 @@ app.get('/feedback', function(req, res) {
 	});
 });
 
-app.get('/tweets', function(req, res) {
 
-});
 
 app.listen(app.get('port'), function() {
 	console.log('Listening on port ' + app.get('port') + '...');
