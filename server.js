@@ -10,7 +10,7 @@ var express = require('express'),
 var transporter = nodemailer.createTransport({
 	service: 'gmail',
 	auth: {
-		user: 'liven93@gmail.com',
+		user: 'listenthenlead@gmail.com',
 		pass: process.env.EMAIL_PASS
 	}
 });
@@ -29,7 +29,7 @@ app.get('/feedback', function(req, res) {
 	console.log(req.query);
 	transporter.sendMail({
 		from: 'Noah + Christina ' + req.query.from,
-		to: 'nevil@u.northwestern.edu',
+		to: 'listenthenlead@gmail.com',
 		subject: 'Email from We\'re Listening form',
 		replyTo: req.query.from,
 		text: req.query.text
