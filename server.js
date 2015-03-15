@@ -6,6 +6,7 @@ var express = require('express'),
 	nodemailer = require('nodemailer'),
 	insta = require('instagram-node').instagram(),
 	request = require('request'),
+	cors = require('cors'),
 	app = express();
 
 // nodemailer transporter
@@ -25,7 +26,7 @@ insta.use({
 
 // setting up express app
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(cors());
 app.set('port', (process.env.PORT || 8000));
 
 // routes
