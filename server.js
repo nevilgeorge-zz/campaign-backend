@@ -1,11 +1,13 @@
 // server.js
 
+// module dependencies
 var express = require('express'),
 	bodyParser = require('body-parser'),
 	nodemailer = require('nodemailer'),
-	mail = nodemailer.mail,
+	Twit = require('twit'),
 	app = express();
 
+// nodemailer transporter
 var transporter = nodemailer.createTransport({
 	service: 'gmail',
 	auth: {
@@ -14,11 +16,17 @@ var transporter = nodemailer.createTransport({
 	}
 });
 
+// twitter client instance
+var T = new Twit({
 
+});
+
+// setting up express app
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('port', (process.env.PORT || 8000));
 
+// routes
 app.get('/', function(req, res) {
 	res.send('You\'ve reached a Node server.');
 });
@@ -40,6 +48,10 @@ app.get('/feedback', function(req, res) {
 			res.send(info.response);
 		}
 	});
+});
+
+app.get('/tweets', function(req, res) {
+
 });
 
 app.listen(app.get('port'), function() {
