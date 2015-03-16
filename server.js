@@ -19,13 +19,14 @@ var transporter = nodemailer.createTransport({
 });
 
 // initialize instagram API
-insta.use({
-	client_id: process.env.INSTA_CLIENT_ID,
-	client_secret: process.env.INSTA_CLIENT_SECRET
-});
+// insta.use({
+// 	client_id: process.env.INSTA_CLIENT_ID,
+// 	client_secret: process.env.INSTA_CLIENT_SECRET
+// });
 
 // setting up express app
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cors());
 app.set('port', (process.env.PORT || 8000));
 
@@ -34,14 +35,14 @@ app.get('/', function(req, res) {
 	res.send('You\'ve reached a Node server.');
 });
 
-app.get('/feedback', function(req, res) {
-	console.log(req.query);
+app.post('/feedback', function(req, res) {
+	console.log(req.body);
 	transporter.sendMail({
-		from: 'Noah + Christina ' + req.query.from,
+		from: req.body.name + ' ' + req.body.from,
 		to: 'listenthenlead@gmail.com',
-		subject: 'Email from We\'re Listening form',
-		replyTo: req.query.from,
-		text: req.query.text
+		subject: 'Email from \'Say Something\' form',
+		replyTo: req.body.from,
+		text: req.body.text
 	}, function(error, info) {
 		if (error) {
 			console.log(error);
