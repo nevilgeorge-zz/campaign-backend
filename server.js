@@ -46,10 +46,14 @@ app.post('/feedback', function(req, res) {
 	}, function(error, info) {
 		if (error) {
 			console.log(error);
-			res.send(error);
+			res.send(false);
 		} else {
 			console.log(info);
-			res.send(info.response);
+			if (typeof info.accepted !== 'undefined') {
+				res.send(true);
+			} else {
+				res.send(false);
+			}
 		}
 	});
 });
