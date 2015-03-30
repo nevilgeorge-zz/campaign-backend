@@ -78,28 +78,29 @@ app.post('/feedback', function(req, res) {
 
 // get embedded html from instagram, PROVIDED YOU HAVE AN ACCESS TOKEN
 app.get('/instagram', function(req, res) {
-	var access_token = process.env.INSTA_ACCESS_TOKEN;
+	// var access_token = process.env.INSTA_ACCESS_TOKEN;
+	var access_token = '647926477.98fc2c5.1f9f04b42ed54f8daa6c00c0024c8971';
 	request.get('https://api.instagram.com/v1/users/self/media/recent/?access_token=' + access_token, function(err, response, body) {
 		if (err) {
 			console.log(err);
 			res.send(err);
 			return;
 		}
+		
 		var items = JSON.parse(body).data,
-			embeddedLinks = [],
+			pics = [],
 			count = 0,
-			link;
+			obj,
+			current;
 		for (var i = 0; i < items.length; i++) {
-			link = items[i].link;
-			request.get('http://api.instagram.com/oembed?url=' + link, function(err, resp, body) {
-				obj = JSON.parse(body);
-				embeddedLinks.push(obj.html);
-				count++;
-				if (count == items.length) {
-					res.send(embeddedLinks);
-				}
-			});
+			current = items[i];
+			obj = {};
+			obj.url = current.images.standard_resolution.url;
+			obj.comments = current.comments.count;
+			obj.likes = current.likes.count;
+			pics.push(obj);
 		}
+		res.send(pics);
 	});
 });
 
