@@ -87,7 +87,7 @@ app.get('/instagram', function(req, res) {
 			res.send(err);
 			return;
 		}
-		
+
 		var items = JSON.parse(body).data,
 			pics = [],
 			count = 0,
@@ -99,6 +99,7 @@ app.get('/instagram', function(req, res) {
 			obj.url = current.images.standard_resolution.url;
 			obj.comments = current.comments.count;
 			obj.likes = current.likes.count;
+			obj.caption = current.caption.text;
 			pics.push(obj);
 		}
 		res.send(pics);
