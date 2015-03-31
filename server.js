@@ -7,6 +7,7 @@ var express = require('express'),
 	insta = require('instagram-node').instagram(),
 	request = require('request'),
 	cors = require('cors'),
+	Twitter = require('twitter'),
 	app = express();
 
 // nodemailer transporter
@@ -101,6 +102,40 @@ app.get('/instagram', function(req, res) {
 			pics.push(obj);
 		}
 		res.send(pics);
+	});
+});
+
+var twitter = new Twitter({
+	consumer_key: 'QogjhZUVCbOL5tHMapUoHfTcU',
+	consumer_secret: 'M2hEXHYsgyVYCbiRD98bJDyNy6mOh8v3zuD3OqMJDKJQDnuEp6',
+	access_token_key: '2787350504-cKU8Znb18yQq8LX5GDyqLV0sHYR1tJ2eWZumoXS',
+	access_token_secret: 'IpX2KiISUTzU22kDDCf38d4pRGN2e9OpMZLoofGiObmH9'
+});
+
+app.get('/twitter', function(req, res) {
+	var params = {
+		screen_name: 'TechCrunch',
+		count: 15
+	};
+	twitter.get('statuses/user_timeline', params, function(err, tweets, response) {
+		if (err) {
+			console.log(err);
+			res.send(err);
+		}
+		var current,
+			obj,
+			items = [];
+		for (var i = 0 ; i < tweets.length; i++) {
+			current = tweets[i];
+			obj = {};
+			obj.text = current.text;
+			obj.user = current.user.name;
+			obj.profilePic = current.user.profile_image_url;
+			obj.retweets = current.retweet_count;
+			obj.favorites = current.favorite_count;
+			items.push(obj);
+		}
+		res.send(items);
 	});
 });
 
