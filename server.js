@@ -106,10 +106,10 @@ app.get('/instagram', function(req, res) {
 });
 
 var twitter = new Twitter({
-	consumer_key: 'QogjhZUVCbOL5tHMapUoHfTcU',
-	consumer_secret: 'M2hEXHYsgyVYCbiRD98bJDyNy6mOh8v3zuD3OqMJDKJQDnuEp6',
-	access_token_key: '2787350504-cKU8Znb18yQq8LX5GDyqLV0sHYR1tJ2eWZumoXS',
-	access_token_secret: 'IpX2KiISUTzU22kDDCf38d4pRGN2e9OpMZLoofGiObmH9'
+	consumer_key: process.env.TWITTER_CONSUMER_KEY
+	consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+	access_token_key: process.env.ACCESS_TOKEN_KEY,
+	access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
 app.get('/twitter', function(req, res) {
