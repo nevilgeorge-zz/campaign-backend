@@ -114,11 +114,11 @@ var twitter = new Twitter({
 });
 
 app.get('/twitter', function(req, res) {
-	var params = {
-		screen_name: 'TechCrunch',
-		count: 15
-	};
-	twitter.get('statuses/user_timeline', params, function(err, tweets, response) {
+	// var params = {
+	// 	screen_name: 'TechCrunch',
+	// 	count: 15
+	// };
+	twitter.get('statuses/user_timeline', function(err, tweets, response) {
 		if (err) {
 			console.log(err);
 			res.send(err);
