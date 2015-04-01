@@ -20,10 +20,10 @@ var transporter = nodemailer.createTransport({
 });
 
 //initialize instagram API
-// insta.use({
-// 	client_id: process.env.INSTA_CLIENT_ID,
-// 	client_secret: process.env.INSTA_CLIENT_SECRET
-// });
+insta.use({
+	client_id: process.env.INSTA_CLIENT_ID,
+	client_secret: process.env.INSTA_CLIENT_SECRET
+});
 
 // setting up express app
 app.use(bodyParser.urlencoded({ extended: false }));
