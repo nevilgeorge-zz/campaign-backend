@@ -21,8 +21,10 @@ var transporter = nodemailer.createTransport({
 
 //initialize instagram API
 insta.use({
-	client_id: process.env.INSTA_CLIENT_ID,
-	client_secret: process.env.INSTA_CLIENT_SECRET
+	// client_id: process.env.INSTA_CLIENT_ID,
+	// client_secret: process.env.INSTA_CLIENT_SECRET
+	client_id: '98fc2c53b28e438e8b8565067cb1bf81',
+	client_secret: 'be15834c1e304281850a5ca010a392c3'
 });
 
 // setting up express app
@@ -79,8 +81,8 @@ app.get('/handleauth', function(req, res) {
 
 // get posts from your instagram, PROVIDED YOU HAVE AN ACCESS TOKEN
 app.get('/instagram', function(req, res) {
+	var access_token = '647926477.98fc2c5.1f9f04b42ed54f8daa6c00c0024c8971';
 	// var access_token = process.env.INSTA_ACCESS_TOKEN;
-	var access_token = process.env.INSTA_ACCESS_TOKEN;
 	request.get('https://api.instagram.com/v1/users/self/media/recent/?access_token=' + access_token, function(err, response, body) {
 		if (err) {
 			console.log(err);
